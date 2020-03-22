@@ -5,6 +5,7 @@ body {
 }
 
 a:link{color: #2f876f;}
+a:visited{color: #2f876f;}
 /*#aboutme a:link{color: #67a8dd;}*/
 
 #container{

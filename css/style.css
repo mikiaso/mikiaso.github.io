@@ -1,215 +1,598 @@
+@charset "utf-8";
+
+/*--スライドショー用 slide.css の読み込み--*/
+@import url(slide.css);
+
+/* 1: 基本設定 */
+
+/* <HTML> フォント設定 --*/
+/*--基本的にはTwitterのサイズに揃うように調整--*/
+html{
+	font-size: 15.5px; /*Chrome,Firefox*/
+	font-weight: normal;
+	color: #333;	/*全体の文字色*/
+	/*font-family:"ヒラギノ角ゴ Pro W3", "Hiragino Kaku Gothic Pro", "メイリオ", Meiryo, Osaka, "ＭＳ Ｐゴシック", "MS PGothic", sans-serif;	/*フォント種類*/
+	font-family: 'Noto Sans JP', sans-serif;
+}
+_:lang(x)+_:-webkit-full-screen-document, html {
+	font-size: 14.25px; /*Safari*/
+}
+
+/* <HTML>以外 */
+/*既定値は親要素を引き継ぐように設定*/
+body,h1,h2,h3,h4,h5,p,ul,ol,li,dl,dt,dd,form,figure,form,select,input,textarea,span,div,nav {
+	margin: 0px;
+	padding: 0px;
+	font-size: 100%;
+}
+
+/* <BODY> */
 body {
-  background: #2f876f;
-  font-family: Courier;
-  font-size: 12px;
+	line-height: 1.8;		/*行間*/
+	background: #fff;	/*背景色*/
+	text-size-adjust: 100%;
+	-webkit-text-size-adjust: 100%; /* Safari */
 }
 
-a:link{color: #2f876f;}
-a:visited{color: #2f876f;}
-/*#aboutme a:link{color: #67a8dd;}*/
-
-#container{
-  width: 990px;
-  height: 50;
+/* <A> リンク（全般）設定--*/
+a {
+	color: #333;		/*リンクテキストの色*/
+	transition: 0.5s;	/*マウスオン時の移り変わるまでの時間設定。0.5秒。*/
+}
+a:hover {
+	color: #65bde1;			/*マウスオン時の文字色*/
+	text-decoration: none;	/*マウスオン時に下線を消す設定。残したいならこの１行削除。*/
 }
 
-header{
-  width: 100%;
-  max-width: 990px;
-  height: 50;
-  background: #ffffff;
-  /*padding-top: 30px;*/
+/* <IMG> <VIDEO> <AUDIO> 画像 音声 */
+img,video,audio {
+	border: none;
+	max-width: 100%;
+	height: auto;
+	vertical-align: middle;
 }
 
-#left{
-  width: 470px;
-  float: left;
-  margin-right:15px;
+/* <TABLE> 表 */
+table {
+	border-collapse: collapse;
+	font-size: 100%;
+	border-spacing: 0;
 }
 
-#right{
-  width: 470px;
-  float: left;
-  margin-left:15px;
+/* リスト */
+ul,ol {
+	list-style-type: none;
 }
 
-p#date{margin: 0;}
-p#job{
-  margin: 0;
-  color: #2f876f;
-}
-ul#navigation{
-  width: 500px;
-  height: 50px;
-  /*margin-top: 30px;*/
-  /*margin-bottom: 15px;*/
+/* <IFRAME> */
+iframe {
+	width: 100%;
 }
 
-ul#navigation li{
-  /*width: 150px;*/
-  padding: 0 10px 0 10px;
-  height: 50px;
-  font-size: 16px;
-  color: #2f876f;
-  float: left;
-  text-align: center;
-  border-left: 1px dashed #2f876f;
-  list-style: none;
-  line-height: 50px;
+/* 2: 詳細設定 */
+
+/* 横幅を揃えるためのinnerクラス */
+.inner {
+	max-width: 1300px;	/*サイトの最大幅*/
+	margin: 0 auto; /*中央揃え*/
 }
 
-#title li{
-  width: 150px;
-  height: 50px;
-  font-size: 20px;
-  font-weight: bold;
-  text-align: center;
-  color: #2f876f;
-  float: left;
-  list-style: none;
-  line-height: 50px;
+/*  <HEADER> ヘッダー共通  */
+header {
+	background: #65bde1;	/*背景色*/
+	height: 100px;			/*高さ*/
+	color: #fff;		/*文字色*/
+	text-align: left;
+	white-space: nowrap;
+}
+header a, header a:hover {
+	color: #fff;	/*リンクテキスト、マウスオン時の文字色*/
+	text-decoration: none;	/*マウスオン時に下線を消す設定。残したいならこの１行削除。*/
+}
+header h1{
+	position: relative; /*  言語表示の位置基準とする  */
+}
+/*  ヘッダー内のロゴ文字・画像のセット  */
+#logoset {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: center;
+	font-size: 1.5rem;
+	line-height: 1.3;
+}
+/*  ヘッダー内のロゴ画像  */
+#logo {
+	height: 80px;
+	width: 80px;
+	padding: 10px;
+}
+/*  言語切替  */
+#tel {
+	display:none; /*英語版ができるまで一時的に非表示*/
+}
+#tel {
+	position: absolute; /* h1タグに対する相対位置を絶対的に指定*/
+	top: 24px;
+	right: 24px;
+	font-size: 1.2rem;
+	line-height: 1.2;
+	/*margin-left: auto;*/
+	/*vertical-align: middle;*/
 }
 
-#aboutme{
-  width: 470px;
-  /*height: 175px;*/
-  margin-bottom: 10px;
-  padding: 10px;
-  background: #ffffff;
+#mainimg {
+	position: relative;
+}
+#mainimg p {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	font-size: 1.2em;
+	letter-spacing: 0.8em;
+	text-align: center;
+	font-weight: bold;	/*太字に*/
+	text-shadow: 0px 0px 5px white, 0px 0px 5px white, 0px 0px 5px white, 0px 0px 5px white,
+								0px 0px 5px white, 0px 0px 5px white, 0px 0px 5px white, 0px 0px 5px white;
+	transform: translate(-50%,-50%) scale(2,2) rotate(-0.02turn);
+}
+#mainimg p span{
+	white-space: nowrap;
 }
 
-#mycareer{
-  width: 470px;
-  margin-bottom: 10px;
-  padding: 10px;
-  background: #ffffff;
+/* メインメニュー */
+#menubar {
+	clear: both;
+	height: 75px;		/*メニューの高さ。下の「#menubar li a」の「height」と「padding-top」の数字を合計した数字に合わせる。*/
+	text-align: center;	/*文字を中央に*/
+	background: #65bde1;	/*背景色*/
+	border-top: 1px solid #fff;		/*上の線の幅、線種、色（古いブラウザ用）*/
+	border-bottom: 1px solid #fff;	/*下の線の幅、線種、色（古いブラウザ用）*/
+	border-top: 1px solid rgba(255,255,255,0.5);	/*上の線の幅、線種、255,255,255は白の事で0.5は50%色がついた状態の事。*/
+	border-bottom: 1px solid rgba(255,255,255,0.5);	/*上の線の幅、線種、255,255,255は白の事で0.5は50%色がついた状態の事。*/
 }
-.vertical-timeline-block {
-  position: relative;
-  margin: 2em 0;
+/* 項目 */
+#menubar li {
+	float: left;	/* 左に回り込み */
+	width: 20%;	/* メニュー幅 100÷5個=20% */
 }
-.vertical-timeline-icon {
-  position: absolute;
-  top: 0;
-  left: 10px;
-  width: 70px;
-  height: 70px;
-  font-size: 11px;
-  text-align: center;
+/* 項目名 */
+#menubar li a {
+	text-decoration: none;
+	display: block;
+	font-weight: bold;	/*太字に*/
+	font-size: 1.2rem;			/*文字サイズ*/
+	line-height: 1.5;	/*行間を少し狭く*/
+	color: #fff;		/*文字色*/
+	height: 60px;		/*高さ*/
+	padding-top: 15px;	/*上に追加する余白*/
+	border-right: 1px solid #fff;	/*メニューの右側の線の幅、線種、色（古いブラウザ用）*/
+	border-right: 1px solid rgba(255,255,255,0.5);	/*右の線の幅、線種、255,255,255は白の事で0.5は50%色がついた状態の事。*/
 }
-.vertical-timeline-icon i {
-  font-size: 40px;
-  color: #2f876f;
+/*１つ目のメニューへの追加設定*/
+#menubar li:first-child a {
+	border-left: 1px solid #fff;	/*メニューの線の幅、線種、色（古いブラウザ用）*/
+	border-left: 1px solid rgba(255,255,255,0.5);	/*左の線の幅、線種、255,255,255は白の事で0.5は50%色がついた状態の事。*/
 }
-.vertical-date small {
-  color: #2f876f;
-  font-weight: 400;
+/* 項目名の英語 */
+#menubar li span {
+	display: block;
+	font-size: 0.8rem;			/*文字サイズ*/
+	/*font-weight: normal;	/*文字を太字でなく標準に戻す設定*/
+	letter-spacing: 0.2em;	/*文字間隔を少しあける設定*/
+	opacity: 0.7;			/*透明度50％*/
 }
-.vertical-timeline-content {
-  position: relative;
-  margin-left: 80px;
-  padding: 1em;
+/* マウスオン時および現在表示中の項目 */
+#menubar li a:hover,
+#menubar li.current a {
+	background: #fff;	/*背景色*/
+	color: #65bde1;		/*文字色*/
 }
-
-#research{
-  width: 470px;
-  margin-bottom: 10px;
-  padding: 10px;
-  background: #ffffff;
+/* メインメニューが画面上部に到達後は固定 */
+/* 到達判定はbodyにis-fixedmenuクラスがつく */
+body.is-fixed #menubar {
+	width: 100%;
+	z-index: 100;
+	position: fixed;
+	top: 0;
+	left: 0;
 }
-.research-block {
-  height: 200px;
-  position: relative;
-  margin: 0;
-}
-
-#photo{
-  width: 470px;
-  margin-bottom: 10px;
-  padding: 10px;
-  background: #ffffff;
-}
-.photo-block {
-  height: 100px;
-  position: relative;
-  margin: 5px;
-  text-align: center;
-}
-
-#followme{
-  width: 470px;
-  /*height: 197px;*/
-  margin-bottom: 10px;
-  padding: 10px;
-  background: #ffffff;
-  font-size: 30px;
-  color: #2f876f;
-}
-#mail{
-  font-size: 12px;
-  margin: 0;
-}
-#mail i{
-  font-size: 20px;
-  margin-right: 10px;
+body.is-fixed header {
+	margin-bottom: 77px; /*75px + 枠線1px 1px*/
 }
 
-h3{
-  font-size: 16px;
-  color: #2f876f;
-  border-bottom: 3px solid #2f876f;
-  margin: 0;
+/* サブメニュー */
+#menubar-s {
+	display: none; /* 非表示（設定はレスポンシブの箇所で） */
 }
 
-h4{
-  font-size: 14px;
-  margin: 0;
+/* サブメニュー用ボタン */
+#menubar_hdr {
+	display: none; /* 非表示（設定はレスポンシブの箇所で） */
 }
 
-h4.research_title{
-  font-size: 12px;
-  padding-bottom: 0px;
-  margin-top: 15px;
+/*  3列コンテンツ ((sub+main)+side)  */
+#contents {
+	clear: both; overflow: hidden;
+	padding: 40px 20px;		/*上下、左右に空けるボックス内の余白*/
+	/*margin: 40px 20px;	/*marginは中央寄せに利用中*/ 
+}
+/*  2列コンテンツ (sub+main)  */
+#contents-in {
+	float: left;	/*sideの左に回り込み*/
+	width: calc(70% - 10px);		/*ブロックの幅*/
+}
+/*  1列コンテンツ (side)  */
+#side {
+	float: right;	/*(sub+main)の右に回り込み*/
+	width: auto;		/*ブロックの幅*/
+}
+/*  1列コンテンツ (main)  */
+#main {
+	float: right;	/*subの右に回り込み*/
+	width: 40%;		/*ブロックの幅*/
+}
+/*  1列コンテンツ (sub)  */
+#sub {
+	float: left;	/*mainの左に回り込み*/
+	width: 30%;	/*ブロックの幅*/
 }
 
-p.research_text{
-  font-size: 12px;
-  margin-top: 0;
-  border-bottom: 1px dashed #2f876f;
+/* c1((%sub%+main)+%side%)のとき*/
+.c1 #contents-in,
+.c1 #main {
+	float: none;
+	width: 100%;
+}
+.c1 #side,
+.c1 #sub {
+	display: none;	
 }
 
-.image_size_h150{
-	/*width: 300px;*/
-	height: 150px;
-  border-radius: 10px 10px 40px 10px
+/* c21((sub+main)+%side%)のとき*/
+.c21 #contents-in {
+	float: none;
+	width: 100%;
 }
-img.image_size_h150{
-  float: left;
-  margin-right: 10px;
-  margin-top: 10px;
+.c21 #side {
+	display: none;
 }
-
-.image_size_h100{
-	/*width: 300px;*/
-	height: 100px;
-  border-radius: 5px 5px 5px 5px;
+.c21 #main {
+	width: calc(60% - 10px);
+}
+.c21 #sub {
+	width: calc(40% - 10px);
 }
 
-#presentation_html{
-  position: absolute;
-  width: 100%;
-  top: 60px;
-  left: 0;
-  padding: 30px;
-  margin: 10px;
-  background-color: #ffffff;
+/* c13((%sub%+main)+side)のとき*/
+.c13 #main {
+	float: none;
+	width: 100%;
+}
+.c13 #sub {
+	display: none;	
+}
+.c13 #side {
+	width: calc(50% - 10px);
+}
+.c13 #contents-in {
+	width: calc(50% - 10px);
 }
 
-#publication_html{
-  position: absolute;
-  top: 60px;
-  left: 0;
-  padding: 30px;
-  margin: 10px;
-  background-color: #ffffff;
+/* 3列内の共通設定 */
+/* h2の直後に続くリスト */
+#contents h2 + ul{
+	padding: 0 30px 30px;
+}
+/* h2の直後に続くリストの要素 */
+#contents h2 + ul > li{
+	padding: 10px 0px 0px;	
+	color: #65bde1;
+	font-weight: bold;
+}
+#contents h2 + ul > li:first-child {
+	padding: 0px 0px 0px;	
+}
+#contents h2 + ul > li::before{
+	width: 15px;
+	height: 15px;
+	margin-bottom:-1.5px;
+	margin-right:4px;
+	border-radius: 40%;
+	display: inline-block;
+	content: "";
+	background-color:#65bde1;
+}
+/* h2の直後に続くリストにあるリンク */
+#contents h2 + ul > li a,
+#contents h2 + ul > li a:hover {
+	color: #65bde1;			/*マウスオン時の文字色*/
+}
+/* h2の直後に続く二段目のリスト */
+#contents h2 + ul > li > ul,
+#contents h2 + ul      > ul{
+	padding: 0 0 0 30px;
+}
+/* h2の直後に続く二段目のリストの要素 */
+#contents h2 + ul > li > ul > li,
+#contents h2 + ul      > ul > li {
+	margin-left: 30px;
+	text-indent: -30px;
+	color: black;
+	font-weight: normal;
+}
+
+/* <H2> */
+#main h2, #sub h2, #side h2 {
+	clear: both;
+	margin-bottom: 20px;
+	padding: 10px 20px;	/*上下、左右への余白*/
+	font-size: 1.2rem;	/*文字サイズ*/
+	color: #fff;		/*文字色*/
+	background: #65bde1;	/*背景色*/
+}
+#main h2::first-letter,
+#sub h2::first-letter,
+#side h2::first-letter {
+	border-left: 3px solid #fff;	/*左の線の幅、線種、色*/
+	padding-left: 15px;				/*線とテキストとの余白*/
+}
+/* <P> */
+#contents p {
+	padding: 0px 20px 20px;	/*上、左右、下への余白*/
+	text-align: justify;
+  /*text-indent: 3em;*/
+}
+/* 続く場合の微調整 */
+#main p + p,
+#sub p + p,
+#side p + p {
+	margin-top: -5px;
+}
+#main h2 + p,
+#sub h2 + p,
+#side h2 + p {
+	margin-top: -10px;
+}
+#main section + section,
+#sub section + section,
+#side section + section {
+	margin-top: 30px;
+}
+
+/* Instagram@Curatorフィードの設定 */
+#curator-feed-instagram-layout {
+	padding: 0;
+	margin: 0px 20px 20px; /*上、右、下、左*/
+	font-size: 0.8rem;
+}
+#curator-feed-instagram-layout a {
+	display: none;
+}
+#curator-feed-instagram-layout.crt-widget a.crt-logo.crt-tag {
+	display: none;
+}
+
+/* Twitterフィードの設定 */
+#twitter {
+	max-width: 600px;
+	margin: 0 auto;
+}
+
+/*  小見出しの色指定  */
+.color1, .color1 a {color: #65bde1;}
+
+/*  フッター  */
+footer {
+	clear: both;
+	background: #65bde1;	/*背景色*/
+	font-size: 0.85rem;			/*文字サイズ*/
+	color: #fff;			/*文字色*/
+}
+#footermain {
+	padding: 20px 0;	/*上下、左右へのボックス内の余白*/
+}
+footer a, footer a:hover {
+	color: #fff;	/*リンクテキスト、マウスオン時の文字色*/
+}
+
+/*コピーライト
+---------------------------------------------------------------------------*/
+#copyright {
+	clear: both;
+	text-align: center;
+	background: #333;	/*背景色*/
+}
+#copyright a {text-decoration: none;}
+
+/*  上端に戻るボタン設定  */
+@keyframes scroll {
+0% {opacity: 0;}
+100% {opacity: 1;}
+}
+body .nav-fix-pos-pagetop a {
+	display: none; /*デフォルトではボタン非表示*/
+}
+body.is-fixed-pagetop .nav-fix-pos-pagetop a {
+	display: block;
+	text-decoration: none;
+	text-align: center;
+	z-index: 100;
+	position: fixed;
+	width: 50px;		/*幅*/
+	line-height: 50px;	/*高さ*/
+	bottom: 50px;		/*下から50pxの場所に配置*/
+	right: 3%;			/*右から3%の場所に配置*/
+	background: #000;	/*背景色（古いブラウザ用）*/
+	background: rgba(0,0,0,0.6);	/*背景色。0,0,0は黒の事で0.6は透明度60%の事。*/
+	color: #fff;		/*文字色*/
+	border: 1px solid #fff;	/*枠線の幅、線種、色*/
+	animation-name: scroll;	/* アニメーションscrollを指定 */
+	animation-duration: 1S;	/* アニメーションの実行時間 */
+	animation-fill-mode: forwards;	/*アニメーションの完了後、最後のキーフレームを維持する*/
+}
+/*マウスオン時*/
+body.is-fixed-pagetop .nav-fix-pos-pagetop a:hover {
+	background: #999;	/*背景色*/
+}
+
+/*  レスポンシブ対応(1)画面幅1301px以上の設定  */
+@media screen and (min-width:1301px){
+/*
+.inner {
+	width: 1301px;
+}
+*/
+
+}
+
+/* レスポンシブ対応(2)画面幅900px以下の設定  */
+/* 段組みを解除してメニューは右上に集約 */
+@media screen and (max-width:900px){
+
+/*  段組み解除  */
+#main, #sub, #side, #contents-in {
+	float: none !important;
+	width: auto !important;
+}
+
+/*  余白も減らす  */
+#contents {
+	padding: 40px 2%;		/*上下、左右に空けるボックス内の余白(before)*/
+	padding: 20px 2%;		/*上下、左右に空けるボックス内の余白(after)*/
+}
+
+/*  言語切替  */
+#tel {
+	top: 5px;
+	right: 3%;
+	margin-right: 50px;
+	padding-right: 10px;
+}
+
+/*  メインメニューを非表示に  */
+#menubar {
+	display: none;
+}
+/*  画面上部に到達した際に付加していた余白があれば削除  */
+body.is-fixed header { 
+	margin-bottom: 0px;
+}
+
+/*  サブメニュー  */
+/*アニメーションのフレーム設定。全100コマアニメーションだと思って下さい。透明(0%)から色を100%出すアニメーション指定。*/
+@keyframes menu1 {
+	0% {opacity: 0;}
+	100% {opacity: 1;}
+}
+#menubar-s {
+	display: block;overflow: hidden;
+	position: absolute;
+	top: 100px;	/*上から100pxの場所に配置*/
+	border-top: 1px solid #fff;		/*上の線の幅、線種、色*/
+	width: 100%;
+	z-index: 10;
+	animation-name: menu1;		/*上のkeyframesの名前*/
+	animation-duration: 0.5S;	/*アニメーションの実行時間。0.5秒。*/
+	animation-fill-mode: both;	/*アニメーションの完了後、最後のキーフレームを維持する*/
+}
+/*  項目ごと  */
+#menubar-s ul {
+	list-style-type: none;
+}
+/*  項目ごとの文字  */
+#menubar-s li a {
+	display: block;text-decoration: none;
+	padding: 15px 10px 15px 20px;	/*上、右、下、左へのメニュー内の余白*/
+	border-bottom: 1px solid #fff;	/*下の線の幅、線種、色*/
+	background: rgba(0,0,0,0.8);	/*背景色*/
+	font-size: 1.2rem;
+	line-height: 1.5;	/*行間を少し狭く*/
+	color: #fff;	/*文字色*/
+}
+/*  項目ごとの英語  */
+#menubar-s li a span {
+	display: block;
+	font-size: 0.8rem;	/*文字サイズ*/
+}
+
+/*  サブメニューボタン  */
+#menubar_hdr {
+	display: block;
+	position: absolute;
+	top: 24px;	/*上から24pxの場所に配置*/
+	right: 3%;	/*右から3%の場所に配置*/
+	border: 1px solid #fff;	/*枠線の幅、線種、色*/
+}
+/*  開くボタン  */
+#menubar_hdr.close {
+	width: 50px;	/*幅*/
+	height: 50px;	/*高さ*/
+	background: url(../images/icon_menu.png) no-repeat center top/50px;
+}
+/*  閉じるボタン  */
+#menubar_hdr.open {
+	width: 50px;	/*幅*/
+	height: 50px;	/*高さ*/
+	background: url(../images/icon_menu.png) no-repeat center bottom/50px;
+}
+
+}
+
+/* レスポンシブ対応(3)画面幅480px以下の設定（スマホ）  */
+/* ロゴを小さくしてヘッダー周りを調整 */
+/* ヘッダー周りの文字は小さくする */
+/* 余白を少なめに */
+@media screen and (max-width:480px){
+
+/*  ヘッダー  */
+header {
+	height: 70px;		/*高さ*/
+}
+#logoset {
+	font-size: 1.0rem;
+	line-height: 1.2;
+}
+/* ロゴ画像 */
+#logo {
+	height: 60px;		/*ロゴ画像の幅*/	
+	width: 60px;		/*ロゴ画像の幅*/	
+	padding: 5px;
+}
+/*  言語切替  */
+#tel {
+	font-size: 0.8rem;
+	top: 5px;
+}
+
+/*  サブメニュー  */
+#menubar-s {
+	top: 70px;	/*上から70pxの場所に配置*/
+}
+
+/*  サブメニュー用ボタン  */
+#menubar_hdr {
+	top: 9px;	/*上から9pxの場所に配置*/
+}
+
+/*  余白をさらに減らす  */
+#contents {
+	padding: 40px 2%;		/*上下、左右に空けるボックス内の余白(before)*/
+	padding: 20px 2%;		/*上下、左右に空けるボックス内の余白(before)*/
+	padding: 10px 2%;		/*上下、左右に空けるボックス内の余白(after)*/
+}
+
+/*  内容の余白も減らす  */
+#main h2, #sub h2, #side h2{
+	padding: 10px 20px;	/*上下、左右への余白(before)*/
+	padding: 10px 10px;	/*上下、左右への余白(before)*/
+}
+#main p, #sub p, #side p {
+	padding: 0px 20px 20px;	/*上、左右、下への余白(before)*/
+	padding: 0px 10px 15px;	/*上、左右、下への余白(after)*/
+}
+
+/*#twitter {
+	max-width: 400px;
+}*/
+
 }

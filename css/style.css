@@ -527,13 +527,13 @@ body.is-fixed header {
 #menubar_hdr.close {
 	width: 50px;	/*幅*/
 	height: 50px;	/*高さ*/
-	background: url(../images/icon_menu.png) no-repeat center top/50px;
+	background: url(../images/IMG_1873.png) no-repeat center top/50px;
 }
 /*  閉じるボタン  */
 #menubar_hdr.open {
 	width: 50px;	/*幅*/
 	height: 50px;	/*高さ*/
-	background: url(../images/icon_menu.png) no-repeat center bottom/50px;
+	background: url(../images/IMG_1873.png) no-repeat center bottom/50px;
 }
 
 }
